@@ -55,7 +55,8 @@ public class CalculaThor{
 		System.out.println("");
 		System.out.println("Type 1 to the one by one operation");
 		System.out.println("Type 2 to the operations flow");
-		System.out.println("Type 3 to exit");
+		System.out.println("Type 3 to show instructions");
+		System.out.println("Type 4 to exit");
 		System.out.println("");
 		System.out.print("-->");
 		int modeOperation = inNum.nextInt();
@@ -100,6 +101,37 @@ public class CalculaThor{
 				}
 			break;
 			case 3:
+				System.out.println("Hey god, welcome to CalculaThor the calculator created especially for you.");
+				System.out.println("These are the instructions to the well use of CalculaThor:");
+				System.out.println("-First, the operators:");
+				System.out.println("Sum 					= +								Memory of operation 		= memN (N = number of memory)");
+				System.out.println("Substraction 				= -								Base 10 of a number 		= b10");
+				System.out.println("Division 				= /								Grades to Radian			= dtr");
+				System.out.println("Multiplication 				= *								Radian to Grades			= rtd");
+				System.out.println("Modular 				= % (The remainder)						Sine	 			= sen");
+				System.out.println("Square root 				= root								Cosine				= cos");
+				System.out.println("Empowerment 				= pow								Tangent				= tan");
+				System.out.println("Factorial 				= fact								logarithm base 10			= log");
+				System.out.println("Binary to Decimal 			= btd								logarithm base n			= logx");
+				System.out.println("Decimal to Binary 			= dtb								Unpteenth root			= rootx");
+				System.out.println("Binary to Hexadecimal	 		= bth");
+				System.out.println("Hexadecimal to binary 			= htb");
+				System.out.println("Hexadecimal to decimal 			= htd");
+				System.out.println("Decimal to Hexadecimal 			= dth");
+				System.out.println("");
+				System.out.println("-Second, the general use:");
+				System.out.println("You need to type a first number, then you can to type the operator, if the operation");
+				System.out.println("need 2 numbers, after you type the operator you type a second number.");
+				System.out.println("");
+				System.out.println("IMPORTANT: To exit of the flow mode you need to type the operator #.");
+				System.out.println("");
+				System.out.println("RAGNAROK FOR THE HUNDRED!!");
+				System.out.println("");
+				
+				System.out.println("Type RAGNAROK to begin the battle");
+				in.next();
+			break;
+			case 4:
 				menu = false;
 			break;
 			case 100:
@@ -775,7 +807,7 @@ public class CalculaThor{
 		*<b>Post:</b>	the result is saved in the variable rad, that after is returned	</br>
 		
 		*@param num1 this is a double number. num1!=null&&num1==(number)				</br>
-		*@return rad, is the equivalent to the degradian number to the radian number.	</br>
+		*@return rad, is the equivalent to the degradian number in the radian number.	</br>
 	*/
 	public static double DegToRad(double num1){
 		double rad = num1*Math.PI/180;
@@ -790,35 +822,46 @@ public class CalculaThor{
 		*<b>Post:</b>	the result is saved in the variable deg, that after is returned		</br>
 		
 		*@param num1 this is a double number. num1!=null&&num1==(number)				</br>
-		*@return deg, is the equivalent to the radian number to the degradian number.	</br>
+		*@return deg, is the equivalent to the radian number in the degradian number.	</br>
 	*/
 	public static double RadToDeg(double num1){
 		double deg = num1*180/Math.PI;
 		return deg;
 	}
 	
+	/**
+		*This method recieve a number, do a conversion to base 10 and return a string		</br>
+		
+		*<b>Pre:</b>	the num1 variable need to be declared before.						</br>
+		
+		*<b>Post:</b>	the result is saved in the variable base10S, that after is returned	</br>
+		
+		*@param num1 this is a double number. num1!=null&&num1==(number)				</br>
+		*@return deg, is the equivalent to the decimal number in the base 10 number.	</br>
+	*/
 	public static String Base10(double num1){
-		double base10 = num1;
+		int sign = (num1<0) ? -1:1;
+		double baseTen = num1*sign;
 		String base10S = "";
 		int contExp=0;
-		if(num1 > 0){
-			do{
-				base10/=10;
+		
+		if(num1 > 1||num1<-1){
+			while(baseTen>=10){
+				baseTen = baseTen/10;
 				contExp++;
-			}while((int)base10<10);
-			base10S=base10+"*10^"+contExp;
-		}else if(num1<0){
-			do{
-				base10*=10;
-				contExp++;
-				System.out.println(base10);
-			}while((int)base10>0);
+			}
+			base10S=sign*baseTen+"x10^"+contExp;
+		}else if(num1<1||num1>-1&&num1!=0){
+			while(baseTen<=1){
+				baseTen = baseTen*10;
+				contExp--;
+			}
 			
-			contExp*=-1;
-			base10S=base10+"*10^"+contExp;
+			base10S=sign*baseTen+"x10^"+contExp;
 			
 		}else	base10S = "0*10^0";
 		
 		return base10S;
 	}
+	
 } //End Class
